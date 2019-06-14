@@ -16,7 +16,8 @@ var score = 0
 func _ready():
 	set_process(true)
 	set_process_input(true)
-	self.connect("playerDied", get_tree().get_root().get_node("/root/World/Environment"), "on_PlayerDied")
+	self.connect("playerDied", get_parent().get_node("Environment"), "on_PlayerDied")
+	self.connect("playerDied" , get_parent().get_node("Score"), "on_PlayerDied")
 	pass
 	
 	
