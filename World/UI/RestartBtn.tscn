@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World/Sprites/restart.png" type="Texture" id=1]
+[ext_resource path="res://World/UI/Scripts/RestartBtn.gd" type="Script" id=2]
+
+[node name="RestartBtn" type="TextureButton"]
+margin_left = 475.0
+margin_top = 266.0
+margin_right = 549.0
+margin_bottom = 335.0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 2 )
+[connection signal="pressed" from="." to="." method="_on_RestartBtn_pressed"]

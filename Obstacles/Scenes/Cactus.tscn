@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Obstacles/Scripts/Cactus.gd" type="Script" id=1]
+[ext_resource path="res://sheet.png" type="Texture" id=2]
+
+[node name="Cactus" type="Area2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 446, -4, 34, 76 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
+position = Vector2( 0.571429, -3.42201e-007 )
+scale = Vector2( 0.842857, 1.9 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 2.68312, -32.321, 5.05349, -29.9506, 6.37036, -27.3169, 12.9547, -23.1029, 17.1687, -19.679, 16.9053, 1.39094, 10.321, 7.18518, 7.16049, 35.3663, 5.05349, 37.4732, -4.16461, 37.2099, -6.53499, 34.8395, -13.3827, 13.2428, -16.8066, 10.0823, -16.5432, -11.7778, -10.6415, -19.9113, -6.53499, -28.3704, -3.11112, -31.5309 )
+[connection signal="body_entered" from="." to="." method="_on_Cactus_body_entered"]
