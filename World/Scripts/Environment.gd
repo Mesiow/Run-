@@ -40,7 +40,7 @@ func spawnCloud():
 	
 func spawnBird():
 	randomize()
-	birdTimer.wait_time=rand_range(1, 30.0)
+	birdTimer.wait_time=rand_range(1.0, 20.0)
 	
 	var bird=Bird.instance()
 	var spawnX=rand_range(get_viewport_rect().size.x, get_viewport_rect().size.x * 1.5)
@@ -83,6 +83,8 @@ func _on_CactiSpawnTimer_timeout():
 func stop(): #stops environment movement because we lost
 	var children=get_children()
 	for i in range(0, children.size()):
+		if children[i].has_method("attack"):
+			children[i].stopAttack()
 		if "velocity" in children[i]: #if any of the children nodes has a velocity variables..
 			children[i].velocity=Vector2(0,0)
 		if "anim" in children[i]: #if any of the children have an animation var stop the animation

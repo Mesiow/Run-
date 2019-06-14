@@ -6,6 +6,7 @@ var speed = 150
 
 const gravity=310.0
 
+onready var sprite=get_node("Sprite")
 onready var jump=$Jump
 onready var died=$Died
 
@@ -39,10 +40,12 @@ func _physics_process(delta):
 			velocity.x = speed
 		else:
 			velocity.x=0
+			
+		global_position.x = clamp(global_position.x, 5, get_viewport_rect().size.x) #keep player in the window
 	pass
 
 	
-func emitPlayerLost():
+func kill():
 	emit_signal("playerDied")
 	#freeze character in place
 	velocity.y = 0
