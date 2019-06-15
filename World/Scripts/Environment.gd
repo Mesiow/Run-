@@ -1,5 +1,6 @@
 extends Node2D
 
+const Asteroid=preload("res://Enemies/Scenes/Asteroid.tscn")
 const Cloud=preload("res://World/Cloud.tscn")
 const Cactus=preload("res://Obstacles/Scenes/Cactus.tscn")
 const Bird=preload("res://Enemies/Scenes/Bird.tscn")
@@ -7,9 +8,10 @@ const Bird=preload("res://Enemies/Scenes/Bird.tscn")
 onready var cloudTimer=get_node("CloudSpawnTimer")
 onready var birdTimer=get_node("BirdSpawnTimer")
 onready var cactiTimer=get_node("CactiSpawnTimer")
+onready var astTimer=get_node("AsteroidSpawnTimer")
 onready var ground=get_node("Ground")
 
-enum type{ SINGLE, GROUP}
+onready var player=get_parent().get_node("Player")
 
 signal playerDied
 
@@ -22,6 +24,7 @@ func spawnObstacles():
 	spawnCloud()
 	spawnBird()
 	spawnCactus()
+	spawnAsteroid()
 	pass
 	
 	
@@ -64,6 +67,23 @@ func spawnCactus():
 	
 	cactiTimer.start()
 	pass
+	
+func spawnAsteroid():
+	randomize()
+	astTimer.wait_time = rand_range(0.5, 3.0)
+	var spawnX = rand_range(get_viewport_rect().size.x - get_viewport_rect().size.x / 2, get_viewport_rect().size.x)
+	var spawnY = 50
+	
+	var asteroid=Asteroid.instance()
+	asteroid.global_position = Vector2(spawnX, spawnY)
+	
+	#calc direction from player to spawned asteroid
+	var direction = (asteroid.global_position - player.global_position).normalized() #grab direction vector
+	asteroid.setDir(direction) #set the asteroids direction vector
+	add_child(asteroid)
+	
+	astTimer.start()
+	pass
 
 
 func _on_CloudSpawnTimer_timeout():
@@ -78,6 +98,10 @@ func _on_BirdSpawnTimer_timeout():
 
 func _on_CactiSpawnTimer_timeout():
 	spawnCactus()
+	pass
+	
+func _on_AsteroidSpawnTimer_timeout():
+	spawnAsteroid()
 	pass
 	
 func stop(): #stops environment movement because we lost

@@ -19,6 +19,9 @@ position = Vector2( 1730, 480 )
 [node name="BirdSpawnTimer" type="Timer" parent="."]
 
 [node name="CactiSpawnTimer" type="Timer" parent="."]
+
+[node name="AsteroidSpawnTimer" type="Timer" parent="."]
 [connection signal="timeout" from="CloudSpawnTimer" to="." method="_on_CloudSpawnTimer_timeout"]
 [connection signal="timeout" from="BirdSpawnTimer" to="." method="_on_BirdSpawnTimer_timeout"]
 [connection signal="timeout" from="CactiSpawnTimer" to="." method="_on_CactiSpawnTimer_timeout"]
+[connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_AsteroidSpawnTimer_timeout"]

@@ -4,18 +4,18 @@ var velocity=Vector2(0,0)
 var speed = 200
 
 onready var environment= get_tree().get_root().get_node("/root/World/Environment")
-var freePosition
+var queueFreePos
 
 func _ready():
 	set_process(true)
 	var ground = environment.get_node("Ground")
-	freePosition = ground.global_position.y
+	queueFreePos = ground.global_position.y
 	
 	velocity.y = speed
 	pass
 	
 func _process(delta):
-	if global_position.y >= freePosition:
+	if global_position.y >= queueFreePos:
 		queue_free()
 	
 	translate(velocity * delta)

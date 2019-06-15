@@ -27,7 +27,7 @@ func _physics_process(delta):
 	if !dead:
 		velocity.y += gravity * 6.0 * delta
 		velocity = move_and_slide(velocity, Vector2(0, -1))
-		#yield(get_tree().create_timer(1.0),"timeout")
+		yield(get_tree().create_timer(1.0),"timeout")
 		score+=1
 		
 		if Input.is_action_pressed("ui_select") and is_on_floor():
