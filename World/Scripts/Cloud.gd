@@ -15,7 +15,7 @@ func _ready():
 	scale=Vector2(randScale, randScale)
 	
 	determineType()
-	set_process(true)
+	set_physics_process(true)
 	pass
 	
 func determineType():
@@ -28,7 +28,7 @@ func determineType():
 	pass
 	
 
-func _process(delta):
+func _physics_process(delta):
 	translate(velocity * delta)
 	pass
 

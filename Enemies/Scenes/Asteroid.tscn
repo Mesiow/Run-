@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Enemies/Scripts/Asteroid.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Sprites/asteroid.png" type="Texture" id=2]
@@ -6,15 +6,35 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 11.2613
 
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 1.0
+angular_velocity = 20.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 5.0
+angle_random = 1.0
+
 [node name="Asteroid" type="Area2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -1.48148 )
 shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 10.3704, -10.963 )
+rotation = 0.633555
+amount = 25
+speed_scale = 2.0
+process_material = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_Asteroid_body_entered"]

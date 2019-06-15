@@ -16,10 +16,10 @@ func _ready():
 	anim.play("fly")
 	attack()
 	
-	set_process(true)
+	set_physics_process(true)
 	pass
 	
-func _process(delta):
+func _physics_process(delta):
 	translate(velocity * delta)
 	pass
 

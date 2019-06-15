@@ -21,6 +21,7 @@ func _ready():
 	pass
 	
 func spawnObstacles():
+	yield(get_tree().create_timer(1.0), "timeout")
 	spawnCloud()
 	spawnBird()
 	spawnCactus()
@@ -70,8 +71,8 @@ func spawnCactus():
 	
 func spawnAsteroid():
 	randomize()
-	astTimer.wait_time = rand_range(0.5, 3.0)
-	var spawnX = rand_range(get_viewport_rect().size.x - get_viewport_rect().size.x / 2, get_viewport_rect().size.x)
+	astTimer.wait_time = rand_range(5.0, 20.0)
+	var spawnX = rand_range(get_viewport_rect().size.x * 1.5, get_viewport_rect().size.x * 2)
 	var spawnY = 50
 	
 	var asteroid=Asteroid.instance()

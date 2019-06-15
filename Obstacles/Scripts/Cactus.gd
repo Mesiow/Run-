@@ -9,11 +9,11 @@ func _ready():
 	var randScale=rand_range(0.8, 1)
 	scale=Vector2(randScale, randScale)
 	velocity=Vector2(-speed, 0)
-	set_process(true)
+	set_physics_process(true)
 	pass
 	
 	
-func _process(delta):
+func _physics_process(delta):
 	translate(velocity * delta)
 	pass
 
