@@ -5,6 +5,8 @@ const Cloud=preload("res://World/Cloud.tscn")
 const Cactus=preload("res://Obstacles/Scenes/Cactus.tscn")
 const Bird=preload("res://Enemies/Scenes/Bird.tscn")
 
+var spawnAsteroids = false
+
 onready var cloudTimer=get_node("CloudSpawnTimer")
 onready var birdTimer=get_node("BirdSpawnTimer")
 onready var cactiTimer=get_node("CactiSpawnTimer")
@@ -16,8 +18,16 @@ onready var player=get_parent().get_node("Player")
 signal playerDied
 
 func _ready():
+	set_process(true)
 	self.connect("playerDied", get_parent(), "on_PlayerDeath")
 	spawnObstacles()
+	pass
+	
+	
+func _process(delta):
+	if player.score >= 1000:
+		spawnAsteroid()
+		set_process(false)
 	pass
 	
 func spawnObstacles():
@@ -25,7 +35,6 @@ func spawnObstacles():
 	spawnCloud()
 	spawnBird()
 	spawnCactus()
-	spawnAsteroid()
 	pass
 	
 	
