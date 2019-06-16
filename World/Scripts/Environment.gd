@@ -112,12 +112,15 @@ func stop(): #stops environment movement because we lost
 			children[i].stopAttack()
 		if "velocity" in children[i]: #if any of the children nodes has a velocity variables..
 			children[i].velocity=Vector2(0,0)
+		if "rot" in children[i]:
+			children[i].rot = 0
 		if "anim" in children[i]: #if any of the children have an animation var stop the animation
 			children[i].anim.stop()
 			
 	cloudTimer.stop()
 	birdTimer.stop()
 	cactiTimer.stop()
+	astTimer.stop()
 	pass
 	
 func on_PlayerDied(): #callback func connected to signal in player

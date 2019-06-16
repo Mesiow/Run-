@@ -16,14 +16,14 @@ func _ready():
 	randomize()
 	$Particles2D.amount = randi() %40 + 10
 	
-	var speed = rand_range(-300.0, -400.0)
+	var speed = rand_range(-500.0, -600.0)
 	if $Particles2D.amount <= 20:
 		speed = speed * 0.5 #set speed to half
 		
 	velocity = Vector2(speed, speed)
 	
 	var randomRot = rand_range(-0.1, 0.1)
-	rot= randomRot
+	rot = randomRot
 	
 	queueFreePos = environment.get_node("Ground").global_position.y
 	set_physics_process(true)
